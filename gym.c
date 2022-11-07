@@ -8,14 +8,14 @@ typedef struct // Cria uma STRUCT para armazenar os dados de uma pessoa
     float altura; // define o campo Altura
 } Pessoa; // Define o nome do novo tipo criado
 
-float getTallestStudent(peopleArray) {
+int getTallestStudent(peopleArray) {
 
 }
 
-float getBiggestImc(peopleArray) {
+int getBiggestImc(peopleArray) {
 
 }
-float getSmallerImc(peopleArray) {
+int getSmallerImc(peopleArray) {
 
 }
 
@@ -30,11 +30,11 @@ int getYoungerStudent(peopleArray) {
     return youngerAge;
 }
 
-float getImcAverage(peopleArray) {
+int getImcAverage(peopleArray) {
 
 }
 
-int main() {
+int main() { //Cada função retorna a posição daquela pessoa
     printf("Lendo o 'documento' contendo 30 alunos...");
     //Array de alunos
     Pessoa studentList[30];
