@@ -8,14 +8,14 @@ typedef struct // Cria uma STRUCT para armazenar os dados de uma pessoa
     float altura; // define o campo Altura
 } Pessoa; // Define o nome do novo tipo criado
 
-getTallestStudent(peopleArray) {
+float getTallestStudent(peopleArray) {
 
 }
 
-getBiggestImc(peopleArray) {
+float getBiggestImc(peopleArray) {
 
 }
-getSmallerImc(peopleArray) {
+float getSmallerImc(peopleArray) {
 
 }
 
@@ -30,7 +30,7 @@ int getYoungerStudent(peopleArray) {
     return youngerAge;
 }
 
-getImcAverage(peopleArray) {
+float getImcAverage(peopleArray) {
 
 }
 
