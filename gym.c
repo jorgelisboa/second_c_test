@@ -15,23 +15,52 @@ int getTallestStudent(Pessoa peopleArray[]) {
     //Loop para acahar o maior valor
     for (unsigned int i = 0; i < ELEMENTOS; i++)
     {
-        printf("Posição atual na lista %u \n", i);
         if (altura < peopleArray[i].altura)
         {
             positionId = i;
             altura = peopleArray[i].altura;
         }
-        printf("Maior número está na posição %u\n", positionId);
     }
 
     return positionId;
 }
 
+float calcImc(Pessoa pessoa) {
+    return pessoa.peso/(pessoa.altura*pessoa.altura);
+}
 int getBiggestImc(Pessoa peopleArray[]) {
+    unsigned int positionId;
+    float pessoaImc = 0.00;
+    float maiorImc;
+    //Loop para acahar o maior valor
+    for (unsigned int i = 0; i < ELEMENTOS; i++)
+    {
+        pessoaImc = calcImc(peopleArray[i]);
+        if (maiorImc < pessoaImc)
+        {
+            positionId = i;
+            maiorImc = pessoaImc;
+        }
+    }
 
+    return positionId;
 }
 int getSmallerImc(Pessoa peopleArray[]) {
+    unsigned int positionId;
+    float pessoaImc = 0.00;
+    float menorImc = 100.00; //Literalmente impossível existir
+    //Loop para acahar o maior valor
+    for (unsigned int i = 0; i < ELEMENTOS; i++)
+    {
+        pessoaImc = calcImc(peopleArray[i]);
+        if (menorImc > pessoaImc)
+        {
+            positionId = i;
+            menorImc = pessoaImc;
+        }
+    }
 
+    return positionId;
 }
 
 int getOlderStudent(Pessoa peopleArray[]) {
@@ -45,13 +74,21 @@ int getYoungerStudent(Pessoa peopleArray[]) {
     return youngerAge;
 }
 
-int getImcAverage(Pessoa peopleArray[]) {
+float getImcAverage(Pessoa peopleArray[]) {
+    //Loop para acahar o maior valor
+    float totalImcs;
+    for (unsigned int i = 0; i < ELEMENTOS; i++)
+    {
+        totalImcs += calcImc(peopleArray[i]);
 
+    }
+    
+    return totalImcs/ELEMENTOS;
 }
 
 int main() { //Cada função retorna a posição daquela pessoa
 
-    printf("Lendo o 'documento' contendo 30 alunos...");
+    printf("Lendo o 'documento' contendo 30 alunos...\n\n");
     //Array de alunos
     Pessoa pessoas[] = {
             {
@@ -76,20 +113,20 @@ int main() { //Cada função retorna a posição daquela pessoa
 
     //Imprime o nome de 1 aluno com a maior altura
     unsigned int tallestPeople = getTallestStudent(pessoas);
-    printf("A maior pessoa na lista é: %s com %.2f metros de altura", pessoas[tallestPeople].nomeCompleto, pessoas[tallestPeople].altura);
+    printf("- A maior pessoa na lista é: %s com %.2f metro(s) de altura\n\n", pessoas[tallestPeople].nomeCompleto, pessoas[tallestPeople].altura);
 
     // //Imprime o nome dos alunos com maior e menor IMC respectivamente
-    // getBiggestImc(studentList);
-    // getSmallerImc(studentList);
+    unsigned int peopleBigImc = getBiggestImc(pessoas);
+    printf("- A pessoa com maior IMC na lista é: %s com IMC = %.2f \n\n", pessoas[peopleBigImc].nomeCompleto, calcImc(pessoas[peopleBigImc]));
+    unsigned int peopleSmallImc = getSmallerImc(pessoas);
+    printf("- A pessoa com menor IMC na lista é: %s com IMC = %.2f \n\n", pessoas[peopleSmallImc].nomeCompleto, calcImc(pessoas[peopleSmallImc]));
 
     // //Imprime o nome dos alunos mais velhos e mais novos respectivamente
     // getOlderStudent(studentList);
     // getYoungerStudent(studentList);
 
     // //Imprime a média dos IMCs dos alunos
-    // getImcAverage(studentList);
-
-    getTallestStudent(pessoas);
-
+    float imcAverage = getImcAverage(pessoas);
+    printf("- A média do IMC de todas pessoas é: %.2f", imcAverage);
     return 0;
 }
