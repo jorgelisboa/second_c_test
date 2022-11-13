@@ -101,8 +101,8 @@ float getImcAverage(Pessoa peopleArray[]) {
 }
 
 int main() { //Cada função retorna a posição daquela pessoa
-
-    printf("Lendo o 'documento' contendo 30 alunos...\n\n");
+    //MUDE OS VALORES NA MACRO PARA O NÚMERO DE ELEMENTOS DA ARRAY ABAIXO (e mude a descrição)
+    printf("Lendo o 'documento' contendo 3 alunos...\n\n");
     //Array de alunos
     Pessoa pessoas[] = {
             {
