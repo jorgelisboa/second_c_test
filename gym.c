@@ -64,14 +64,30 @@ int getSmallerImc(Pessoa peopleArray[]) {
 }
 
 int getOlderStudent(Pessoa peopleArray[]) {
-    unsigned int olderAge;
-
-    return olderAge;
+    unsigned int olderPersonPosition;
+    unsigned int olderAge = 0;
+    for (unsigned int i = 0; i < ELEMENTOS; i++)
+    {
+        if (olderAge < peopleArray[i].idade)
+        {
+            olderAge = peopleArray[i].idade;
+            olderPersonPosition = i;
+        }
+    }
+    return olderPersonPosition;
 }
 int getYoungerStudent(Pessoa peopleArray[]) {
-    unsigned int youngerAge;
-
-    return youngerAge;
+    unsigned int youngerPersonPosition;
+    unsigned int youngerAge = 999;
+    for (unsigned int i = 0; i < ELEMENTOS; i++)
+    {
+        if(youngerAge > peopleArray[i].idade)
+        {
+            youngerAge = peopleArray[i].idade;
+            youngerPersonPosition = i;
+        }
+    }
+    return youngerPersonPosition;
 }
 
 float getImcAverage(Pessoa peopleArray[]) {
@@ -80,9 +96,7 @@ float getImcAverage(Pessoa peopleArray[]) {
     for (unsigned int i = 0; i < ELEMENTOS; i++)
     {
         totalImcs += calcImc(peopleArray[i]);
-
     }
-    
     return totalImcs/ELEMENTOS;
 }
 
@@ -99,13 +113,13 @@ int main() { //Cada função retorna a posição daquela pessoa
             },
             {
                 "Miguel",
-                17,
+                24,
                 100.00,
                 1.70
             },
             {
                 "Lisboa",
-                17,
+                47,
                 70.00,
                 1.63
             },
@@ -122,7 +136,11 @@ int main() { //Cada função retorna a posição daquela pessoa
     printf("- A pessoa com menor IMC na lista é: %s com IMC = %.2f \n\n", pessoas[peopleSmallImc].nomeCompleto, calcImc(pessoas[peopleSmallImc]));
 
     // //Imprime o nome dos alunos mais velhos e mais novos respectivamente
-    // getOlderStudent(studentList);
+    unsigned int olderPersonPosition = getOlderStudent(pessoas);
+    printf("A pessoa mais velha na lista é: %s com %i anos\n\n", pessoas[olderPersonPosition].nomeCompleto, pessoas[olderPersonPosition].idade);
+
+    unsigned int youngerPersonPosition = getYoungerStudent(pessoas);
+    printf("A pessoa mais nova na lista é: %s com %i anos\n\n", pessoas[youngerPersonPosition].nomeCompleto, pessoas[youngerPersonPosition].idade);
     // getYoungerStudent(studentList);
 
     // //Imprime a média dos IMCs dos alunos
